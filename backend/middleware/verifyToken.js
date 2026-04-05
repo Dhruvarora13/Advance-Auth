@@ -5,7 +5,10 @@ dotenv.config();
 
 export const verifyToken = (req, res, next) =>{
     const token = req.cookies.token;
-    if(!token || typeof token !== "string"){
+    const u = process.env.JWT_SECRET;
+    console.log(u);
+    console.log(typeof(process.env.JWT_SECRET));
+    if(!token){
          return res.status(400).json({success: false, messgae:"unauthorise - No token provided"});   
     }
     try {
